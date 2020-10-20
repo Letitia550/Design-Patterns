@@ -3,7 +3,7 @@ public class Author {
 
     public void print()
     {
-
+        System.out.print(name + " \n");
     }
 
     public Author(String name) {
