@@ -1,5 +1,6 @@
 public class Paragraph implements Element{
     private String name;
+    private AlignStrategy strategy;
 
     Paragraph(String name){
         this.name=name;
@@ -14,10 +15,21 @@ public class Paragraph implements Element{
     }
 
     public void print(){
-        System.out.println("Paragraph with name: "+this.name);
+        if (strategy == null) {
+            System.out.println("Paragraph with name: "+this.name);
+        }
+        else{
+            strategy.render(this);
+        }
+
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+
     }
 
     public void setAlignStrategy(AlignStrategy strategy) {
-        this.name = strategy.render(this).name;
+        this.strategy = strategy;
     }
 }

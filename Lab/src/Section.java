@@ -1,30 +1,42 @@
-import java.util.ArrayList;
+import java.util.Vector;
 
-public class Section implements Element{
-    protected String sectionTitle;
-    protected ArrayList<Element> contentElements = new ArrayList<>();
+public class Section implements Element {
+    String sectionTitle;
+    Vector<Element> content = new Vector<Element>();
 
-    Section(String sectionTitle){
-        this.sectionTitle=sectionTitle;
+
+
+    int add(Element element) {
+        content.add(element);
+        return content.size();
+    }
+    void remove(Element element) {
+        for(Element i: content) {
+            content.remove(i);
+        }
     }
 
-    public int add(Element elm){
-        contentElements.add(elm);
-        return contentElements.indexOf(elm);
+    Element getElement(int index) {
+        return content.get(index);
     }
 
-    public void remove(Element elm){
-        contentElements.remove(elm);
-    }
-
-    public Element getElement(int index){
-        return contentElements.get(index);
-    }
-
-    public void print(){
-        System.out.println("Section: "+this.sectionTitle);
-        for(Element i : contentElements){
+    @Override
+    public void print() {
+        System.out.println(sectionTitle);
+        for(Element i: content) {
             i.print();
         }
     }
+    public Section(String sectionTitle) {
+        this.sectionTitle = sectionTitle;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for(Element i:content) {
+            i.accept(visitor);
+        }
+    }
+
 }

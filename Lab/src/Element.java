@@ -1,3 +1,4 @@
 interface Element {
-    public void print();
+    void print();
+    void accept(Visitor visitor);
 }

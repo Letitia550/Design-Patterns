@@ -13,4 +13,9 @@ public class ImageProxy implements Element{
         }
         realImage.print();
     }
+
+    @Override
+    public void accept(Visitor visitor) {
+
+    }
 }
